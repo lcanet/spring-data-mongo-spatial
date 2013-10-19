@@ -12,6 +12,8 @@
 
 All JTS geometry types excepted geometrycollection are supported from mongo 2.5. With mongodb 2.4, only simple (not multiple) geometries are supprted.
 
+```java
+
     import com.vividsolutions.jts.geom.Geometry;
     public class SampleEntity {
 
@@ -20,6 +22,7 @@ All JTS geometry types excepted geometrycollection are supported from mongo 2.5.
         private Geometry location;
         ...
     }
+```
 
 The `location` field will be converted to GeoJSON format, suitable for creating `2dsphere` geospatial index.
 
@@ -64,11 +67,13 @@ Use the `criteria` extented class `GeoCriteria` that includes new geometry opera
 
 The `GeoCriteria` class is compatible with all field restrictions
 
+```java
     Geometry myGeom = wktReader.read("... wkt ...");
     List<SampleEntity> ls = mongoTemplate.find(Query.query(GeoCriteria.where("location")
                 .geoWithin(myGeom)
                 .and("name").is("Roger Saucisse")), 
                 SampleEntity.class);
+```
 
 
 
