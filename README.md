@@ -28,6 +28,8 @@ It is recommended to use WGS84 as the spatial reference system for your data, as
 Next, register the converters in your spring-data-mongo config.
 Using the java config:
 
+```java
+
     @Configuration
     class AppConfig extends AbstractMongoConfiguration {
         @Override
@@ -35,8 +37,11 @@ Using the java config:
             return new CustomConversions(GeometryConverters.geometryConverters());
         }
         ...
+```
 
 Using the XML config
+
+```xml
     <mongo:mapping-converter>
         <mongo:custom-converters>
             <mongo:converter>
@@ -45,7 +50,7 @@ Using the XML config
             </mongo:converter>
         </mongo:custom-converters>
     </mongo:mapping-converter>
-
+```
 
 ### Criterias
 
